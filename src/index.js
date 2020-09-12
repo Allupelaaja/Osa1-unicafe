@@ -5,7 +5,7 @@ const Header = (props) => (
   <h1>{props.name}</h1>
 )
 
-const Stats = (props) => (
+const Statistics = (props) => (
   <div>
     <p>{props.name1} {props.value1}</p>
     <p>{props.name2} {props.value2}</p>
@@ -41,7 +41,7 @@ const App = () => {
       <OmaButton onClick ={() => setNeutral(neutral + 1)} text={types[1]}/>
       <OmaButton onClick ={() => setBad(bad + 1)} text={types[2]}/>
       <Header name={headerStats}/>
-      <Stats name1={types[0]} name2={types[1]} name3={types[2]} name4={types[3]} name5={types[4]} name6={types[5]}
+      <Statistics name1={types[0]} name2={types[1]} name3={types[2]} name4={types[3]} name5={types[4]} name6={types[5]}
       value1={good} value2={neutral} value3={bad}/>
     </div>
   )
