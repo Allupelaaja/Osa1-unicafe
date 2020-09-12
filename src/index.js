@@ -5,17 +5,22 @@ const Header = (props) => (
   <h1>{props.name}</h1>
 )
 
-const Statistics = (props) => (
+const Statistics = (props) => {
+  if(props.value1 == 0 && props.value2 == 0 && props.value3 == 0) {
+    return(
+      <p>No feedback given</p>
+    )
+  }
+  return(
   <div>
     <p>{props.name1} {props.value1}</p>
     <p>{props.name2} {props.value2}</p>
     <p>{props.name3} {props.value3}</p>
     <p>{props.name4} {props.value1 + props.value2 + props.value3}</p>
     <p>{props.name5} {(props.value1 - props.value3) / (props.value1 + props.value2 + props.value3)}</p>
-<p>{props.name6} {(props.value1 / (props.value1 + props.value2 + props.value3) * 100)}%</p>
-  </div>
-  
-)
+    <p>{props.name6} {(props.value1 / (props.value1 + props.value2 + props.value3) * 100)}%</p>
+  </div>)
+}
 
 const OmaButton = (props) => (
   <button onClick={props.onClick}>
