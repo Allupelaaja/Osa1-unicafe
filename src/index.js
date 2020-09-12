@@ -13,13 +13,17 @@ const Statistics = (props) => {
   }
   return(
   <div>
-    <p>{props.name1} {props.value1}</p>
-    <p>{props.name2} {props.value2}</p>
-    <p>{props.name3} {props.value3}</p>
-    <p>{props.name4} {props.value1 + props.value2 + props.value3}</p>
-    <p>{props.name5} {(props.value1 - props.value3) / (props.value1 + props.value2 + props.value3)}</p>
-    <p>{props.name6} {(props.value1 / (props.value1 + props.value2 + props.value3) * 100)}%</p>
+    <StatisticLine text={props.types[0]} value = {props.value1}/>
+    <StatisticLine text={props.types[1]} value = {props.value2}/>
+    <StatisticLine text={props.types[2]} value = {props.value3}/>
+    <StatisticLine text={props.types[3]} value = {props.value1 + props.value2 + props.value3}/>
+    <StatisticLine text={props.types[4]} value = {(props.value1 - props.value3) / (props.value1 + props.value2 + props.value3)}/>
+    <StatisticLine text={props.types[5]} value = {(props.value1 / (props.value1 + props.value2 + props.value3) * 100 + "%")}/>
   </div>)
+}
+
+const StatisticLine = (props) => {
+  return(<p>{props.text} {props.value}</p>)
 }
 
 const OmaButton = (props) => (
@@ -46,8 +50,7 @@ const App = () => {
       <OmaButton onClick ={() => setNeutral(neutral + 1)} text={types[1]}/>
       <OmaButton onClick ={() => setBad(bad + 1)} text={types[2]}/>
       <Header name={headerStats}/>
-      <Statistics name1={types[0]} name2={types[1]} name3={types[2]} name4={types[3]} name5={types[4]} name6={types[5]}
-      value1={good} value2={neutral} value3={bad}/>
+      <Statistics types = {types} value1 = {good} value2 = {neutral} value3 = {bad}/>
     </div>
   )
 }
