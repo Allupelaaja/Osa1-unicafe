@@ -10,6 +10,9 @@ const Stats = (props) => (
     <p>{props.name1} {props.value1}</p>
     <p>{props.name2} {props.value2}</p>
     <p>{props.name3} {props.value3}</p>
+    <p>{props.name4} {props.value1 + props.value2 + props.value3}</p>
+    <p>{props.name5} {(props.value1 - props.value3) / (props.value1 + props.value2 + props.value3)}</p>
+<p>{props.name6} {(props.value1 / (props.value1 + props.value2 + props.value3) * 100)}%</p>
   </div>
   
 )
@@ -28,7 +31,7 @@ const App = () => {
   const headerFeedback = "give feedback"
   const headerStats = "statistics"
   const types = [
-    "good", "neutral", "bad"
+    "good", "neutral", "bad", "all", "average", "positive"
   ]
 
   return (
@@ -38,7 +41,8 @@ const App = () => {
       <OmaButton onClick ={() => setNeutral(neutral + 1)} text={types[1]}/>
       <OmaButton onClick ={() => setBad(bad + 1)} text={types[2]}/>
       <Header name={headerStats}/>
-      <Stats name1={types[0]} name2={types[1]} name3={types[2]} value1={good} value2={neutral} value3={bad}/>
+      <Stats name1={types[0]} name2={types[1]} name3={types[2]} name4={types[3]} name5={types[4]} name6={types[5]}
+      value1={good} value2={neutral} value3={bad}/>
     </div>
   )
 }
