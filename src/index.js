@@ -52,11 +52,15 @@ const App = (props) => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0))
   const headerFeedback = "give feedback"
   const headerStats = "statistics"
+  const headerAnec = "anecdotes"
   const types = [
-    "good", "neutral", "bad", "all", "average", "positive", "next anecdote"
+    "good", "neutral", "bad", "all", "average", "positive"
   ]
+  const anecText = "next anecdote"
+  const voteText = "vote"
 
   return (
     <div>
@@ -66,9 +70,15 @@ const App = (props) => {
       <OmaButton onClick ={() => setBad(bad + 1)} text={types[2]}/>
       <Header name={headerStats}/>
       <Statistics types = {types} value1 = {good} value2 = {neutral} value3 = {bad}/>
-      {props.anecdotes[selected]}
-      <br></br>
-      <OmaButton onClick ={() => setSelected(Math.floor(Math.random() * 6))} text={types[6]}/>
+      <Header name={headerAnec}/>
+      <p>{props.anecdotes[selected]}</p>
+      <p>has {points[selected]} votes</p>
+      <OmaButton onClick ={() =>{
+        const copy = {...points}
+        copy[selected] += 1
+        setPoints(copy)
+      }} text={voteText}/>
+      <OmaButton onClick ={() => setSelected(Math.floor(Math.random() * 6))} text={anecText}/>
     </div>
   )
 }
