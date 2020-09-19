@@ -55,7 +55,8 @@ const App = (props) => {
   const [points, setPoints] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0))
   const headerFeedback = "give feedback"
   const headerStats = "statistics"
-  const headerAnec = "anecdotes"
+  const headerAnec = "Anecdote of the day"
+  const headerMostVotes = "Anecdote with most votes"
   const types = [
     "good", "neutral", "bad", "all", "average", "positive"
   ]
@@ -74,11 +75,14 @@ const App = (props) => {
       <p>{props.anecdotes[selected]}</p>
       <p>has {points[selected]} votes</p>
       <OmaButton onClick ={() =>{
-        const copy = {...points}
+        const copy = [...points]
         copy[selected] += 1
         setPoints(copy)
       }} text={voteText}/>
       <OmaButton onClick ={() => setSelected(Math.floor(Math.random() * 6))} text={anecText}/>
+      <Header name={headerMostVotes}/>
+      <p>{props.anecdotes[points.indexOf(Math.max(...points))]}</p>
+      <p>has {points[points.indexOf(Math.max(...points))]} votes</p>
     </div>
   )
 }
