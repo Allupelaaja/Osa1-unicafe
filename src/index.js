@@ -37,15 +37,25 @@ const OmaButton = (props) => (
   </button>
 )
 
-const App = () => {
+const anecdotes = [
+  'If it hurts, do it more often',
+  'Adding manpower to a late software project makes it later!',
+  'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
+  'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
+  'Premature optimization is the root of all evil.',
+  'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
+]
+
+const App = (props) => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [selected, setSelected] = useState(0)
   const headerFeedback = "give feedback"
   const headerStats = "statistics"
   const types = [
-    "good", "neutral", "bad", "all", "average", "positive"
+    "good", "neutral", "bad", "all", "average", "positive", "next anecdote"
   ]
 
   return (
@@ -56,10 +66,14 @@ const App = () => {
       <OmaButton onClick ={() => setBad(bad + 1)} text={types[2]}/>
       <Header name={headerStats}/>
       <Statistics types = {types} value1 = {good} value2 = {neutral} value3 = {bad}/>
+      {props.anecdotes[selected]}
+      <br></br>
+      <OmaButton onClick ={() => setSelected(Math.floor(Math.random() * 6))} text={types[6]}/>
     </div>
   )
 }
 
-ReactDOM.render(<App />, 
+ReactDOM.render(
+  <App anecdotes={anecdotes} />,
   document.getElementById('root')
 )
