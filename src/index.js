@@ -6,24 +6,29 @@ const Header = (props) => (
 )
 
 const Statistics = (props) => {
-  if(props.value1 == 0 && props.value2 == 0 && props.value3 == 0) {
+  if(props.value1 === 0 && props.value2 === 0 && props.value3 === 0) {
     return(
       <p>No feedback given</p>
     )
   }
   return(
-  <div>
-    <StatisticLine text={props.types[0]} value = {props.value1}/>
-    <StatisticLine text={props.types[1]} value = {props.value2}/>
-    <StatisticLine text={props.types[2]} value = {props.value3}/>
-    <StatisticLine text={props.types[3]} value = {props.value1 + props.value2 + props.value3}/>
-    <StatisticLine text={props.types[4]} value = {(props.value1 - props.value3) / (props.value1 + props.value2 + props.value3)}/>
-    <StatisticLine text={props.types[5]} value = {(props.value1 / (props.value1 + props.value2 + props.value3) * 100 + "%")}/>
-  </div>)
+    <div>
+      <table>
+        <tbody>
+          <StatisticLine text={props.types[0]} value = {props.value1}/>
+          <StatisticLine text={props.types[1]} value = {props.value2}/>
+          <StatisticLine text={props.types[2]} value = {props.value3}/>
+          <StatisticLine text={props.types[3]} value = {props.value1 + props.value2 + props.value3}/>
+          <StatisticLine text={props.types[4]} value = {(props.value1 - props.value3) / (props.value1 + props.value2 + props.value3)}/>
+          <StatisticLine text={props.types[5]} value = {(props.value1 / (props.value1 + props.value2 + props.value3) * 100 + "%")}/>
+        </tbody>
+      </table>
+    </div>
+  )
 }
 
 const StatisticLine = (props) => {
-  return(<p>{props.text} {props.value}</p>)
+  return(<tr><td>{props.text}</td><td>{props.value}</td></tr>)
 }
 
 const OmaButton = (props) => (
